@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Progress } from "@/components/ui/progress";
+import { useState, useEffect } from "react";
 import { 
   Facebook, 
   Twitter, 
@@ -16,6 +18,19 @@ import {
 } from "lucide-react";
 
 const Article = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const socialIcons = [
     { Icon: Facebook, label: "Compartir en Facebook" },
     { Icon: Twitter, label: "Compartir en Twitter" },
@@ -39,9 +54,12 @@ const Article = () => {
 
   return (
     <div className="min-h-screen bg-article-background">
+      <div className="fixed top-0 left-0 w-full z-50">
+        <Progress value={scrollProgress} className="h-1 rounded-none" />
+      </div>
+
       <div className="container mx-auto px-4 py-8 relative">
         <div className="grid grid-cols-12 gap-8">
-          {/* Left Fixed Social Bar */}
           <div className="hidden lg:block col-span-1">
             <div className="sticky top-8 space-y-4">
               {socialIcons.map(({ Icon, label }) => (
@@ -56,7 +74,6 @@ const Article = () => {
             </div>
           </div>
 
-          {/* Main Content */}
           <main className="col-span-12 lg:col-span-8 animate-fade-in">
             <article className="prose max-w-none">
               <Badge className="mb-4 bg-article-accent/10 text-article-accent hover:bg-article-accent/20">
@@ -67,7 +84,18 @@ const Article = () => {
                 El Aprendizaje Automático Revoluciona la Detección Temprana de Enfermedades en el Sector Salud
               </h1>
 
-              {/* Author and Social Share - Mobile/Tablet */}
+              <p className="text-xl font-labrada text-article-title mb-6 leading-snug">
+                Una nueva era en la medicina preventiva emerge con la integración de algoritmos de aprendizaje automático, permitiendo detectar enfermedades antes de que los síntomas sean evidentes.
+              </p>
+
+              <div className="mb-8 rounded-xl overflow-hidden">
+                <img
+                  src="https://api.dicebear.com/7.x/shapes/svg?seed=cover"
+                  alt="Inteligencia Artificial en Medicina"
+                  className="w-full h-[400px] object-cover"
+                />
+              </div>
+
               <div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-article-body mb-8">
                 <div className="flex items-center gap-2">
                   <img
@@ -90,6 +118,18 @@ const Article = () => {
                   </span>
                   <span>Actualizado: 14 de marzo de 2024</span>
                 </div>
+              </div>
+
+              <div className="lg:hidden flex justify-center gap-4 py-4 mb-8 border-y border-article-border">
+                {shareOptions.map(({ Icon, label }) => (
+                  <button
+                    key={label}
+                    className="p-2 hover:bg-article-accent/10 rounded-full transition-colors"
+                    aria-label={`Compartir por ${label}`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </button>
+                ))}
               </div>
 
               <div className="font-labrada leading-[1.1em] space-y-6 text-black">
@@ -129,7 +169,6 @@ const Article = () => {
                 </p>
               </div>
 
-              {/* Share Section */}
               <div className="mt-12 border-t border-b border-article-border py-6 font-poppins">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <h3 className="font-semibold text-lg">Compartir Este Artículo</h3>
@@ -147,7 +186,6 @@ const Article = () => {
                 </div>
               </div>
 
-              {/* Author Bio */}
               <div className="mt-12 bg-article-border/20 rounded-xl p-8">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                   <img
@@ -179,7 +217,6 @@ const Article = () => {
                 </div>
               </div>
 
-              {/* Previous Article */}
               <div className="mt-12">
                 <span className="text-sm font-poppins text-article-body uppercase tracking-wider">
                   ARTÍCULO ANTERIOR
@@ -200,10 +237,8 @@ const Article = () => {
             </article>
           </main>
 
-          {/* Right Sidebar */}
           <aside className="hidden lg:block col-span-3">
             <div className="sticky top-8 space-y-8">
-              {/* Social Share Section */}
               <div className="bg-white p-6 rounded-lg shadow-sm border border-article-border">
                 <h3 className="font-alegreya text-lg font-bold text-article-title mb-4">
                   Compartir artículo
@@ -221,7 +256,6 @@ const Article = () => {
                 </div>
               </div>
 
-              {/* Advertisement */}
               <div className="aspect-[3/4] bg-article-border rounded-lg overflow-hidden">
                 <img
                   src="https://api.dicebear.com/7.x/shapes/svg?seed=ad"
