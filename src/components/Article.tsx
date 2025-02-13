@@ -71,9 +71,9 @@ const Article = () => {
               <div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-article-body mb-8">
                 <div className="flex items-center gap-2">
                   <img
-                    src="/lovable-uploads/4f5f01d4-789b-4222-94e7-a593f72d2a77.png"
+                    src="/lovable-uploads/0a344b12-b34b-4016-a9ad-be6795d83e63.png"
                     alt="Foto del autor"
-                    className="w-10 h-10 rounded-full"
+                    className="w-10 h-10 rounded-full object-cover"
                   />
                   <div>
                     <span className="font-medium text-article-title">JESÚS DAVID SILVA RANGEL</span>
@@ -151,7 +151,7 @@ const Article = () => {
               <div className="mt-12 bg-article-border/20 rounded-xl p-8">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                   <img
-                    src="/lovable-uploads/4f5f01d4-789b-4222-94e7-a593f72d2a77.png"
+                    src="/lovable-uploads/0a344b12-b34b-4016-a9ad-be6795d83e63.png"
                     alt="Foto de JESÚS DAVID SILVA RANGEL"
                     className="w-24 h-24 rounded-full object-cover"
                   />
