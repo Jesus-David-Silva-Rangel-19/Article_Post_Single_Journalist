@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -64,6 +63,7 @@ export default {
 			fontFamily: {
 				alegreya: ['Alegreya', 'serif'],
 				labrada: ['Labrada', 'serif'],
+				poppins: ['Poppins', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

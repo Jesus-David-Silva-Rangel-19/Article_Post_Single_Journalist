@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
@@ -7,7 +6,13 @@ import {
   Linkedin, 
   Share2, 
   Clock, 
-  CheckCircle 
+  CheckCircle,
+  Link2,
+  Mail,
+  Globe,
+  Instagram,
+  Copy,
+  Printer
 } from "lucide-react";
 
 const Article = () => {
@@ -15,6 +20,21 @@ const Article = () => {
     { Icon: Facebook, label: "Compartir en Facebook" },
     { Icon: Twitter, label: "Compartir en Twitter" },
     { Icon: Linkedin, label: "Compartir en LinkedIn" },
+  ];
+
+  const authorSocialLinks = [
+    { Icon: Globe, label: "Sitio web", href: "#" },
+    { Icon: Facebook, label: "Facebook", href: "#" },
+    { Icon: Instagram, label: "Instagram", href: "#" },
+    { Icon: Linkedin, label: "LinkedIn", href: "#" },
+  ];
+
+  const shareOptions = [
+    { Icon: Facebook, label: "Facebook" },
+    { Icon: Twitter, label: "Twitter" },
+    { Icon: Mail, label: "Email" },
+    { Icon: Copy, label: "Copiar enlace" },
+    { Icon: Printer, label: "Imprimir" },
   ];
 
   return (
@@ -107,6 +127,75 @@ const Article = () => {
                 <p>
                   A medida que estas tecnologías continúan evolucionando, podemos esperar ver aplicaciones aún más sofisticadas en el cuidado de la salud. La integración del aprendizaje automático con otras tecnologías emergentes como la genómica y la medicina personalizada promete inaugurar una nueva era de atención médica predictiva y preventiva.
                 </p>
+              </div>
+
+              {/* Share Section */}
+              <div className="mt-12 border-t border-b border-article-border py-6 font-poppins">
+                <div className="flex items-center justify-between flex-wrap gap-4">
+                  <h3 className="font-semibold text-lg">Compartir Este Artículo</h3>
+                  <div className="flex items-center gap-4">
+                    {shareOptions.map(({ Icon, label }) => (
+                      <button
+                        key={label}
+                        className="p-2 hover:bg-article-accent/10 rounded-full transition-colors"
+                        aria-label={`Compartir por ${label}`}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Author Bio */}
+              <div className="mt-12 bg-article-border/20 rounded-xl p-8">
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  <img
+                    src="/lovable-uploads/4f5f01d4-789b-4222-94e7-a593f72d2a77.png"
+                    alt="Foto de JESÚS DAVID SILVA RANGEL"
+                    className="w-24 h-24 rounded-full object-cover"
+                  />
+                  <div className="flex-1 font-poppins">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="font-semibold text-xl">JESÚS DAVID SILVA RANGEL</h3>
+                      <CheckCircle className="w-5 h-5 text-article-accent" />
+                    </div>
+                    <p className="text-sm text-article-body mb-4">
+                      Ingeniero de Machine Learning especializado en el desarrollo de soluciones de IA para el sector salud. Ex investigador principal en The Health Institute, ahora lidera el equipo de innovación en Globe como Editor Senior de Tecnología. Apasionado por la intersección entre la inteligencia artificial y el cuidado de la salud.
+                    </p>
+                    <div className="flex gap-4">
+                      {authorSocialLinks.map(({ Icon, label, href }) => (
+                        <a
+                          key={label}
+                          href={href}
+                          className="text-article-body hover:text-article-accent transition-colors"
+                          aria-label={label}
+                        >
+                          <Icon className="w-5 h-5" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Previous Article */}
+              <div className="mt-12">
+                <span className="text-sm font-poppins text-article-body uppercase tracking-wider">
+                  ARTÍCULO ANTERIOR
+                </span>
+                <a href="#" className="block mt-4 group">
+                  <div className="flex items-center gap-4">
+                    <img
+                      src="https://api.dicebear.com/7.x/shapes/svg?seed=prev"
+                      alt="Imagen del artículo anterior"
+                      className="w-16 h-16 rounded object-cover"
+                    />
+                    <h4 className="font-alegreya text-xl font-bold group-hover:text-article-accent transition-colors">
+                      La Innovación en Drones Evoluciona del Hardware al Software Autónomo
+                    </h4>
+                  </div>
+                </a>
               </div>
             </article>
           </main>
